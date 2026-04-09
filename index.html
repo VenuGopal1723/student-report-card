@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ScoreNest Report Generator</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<div class="dashboard" id="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+
+      <!-- 🔥 NEW LOGO -->
+      <div class="brand-icon custom-logo">
+        <svg viewBox="0 0 100 100" width="28" height="28">
+          <!-- Circle -->
+          <circle cx="50" cy="50" r="45" fill="#f5a623"/>
+
+          <!-- Nest -->
+          <path d="M20 55 Q50 80 80 55" stroke="#fff" stroke-width="4" fill="none"/>
+          <path d="M25 60 Q50 85 75 60" stroke="#fff" stroke-width="3" fill="none"/>
+
+          <!-- Cap -->
+          <polygon points="30,40 50,30 70,40 50,50" fill="#ffffff"/>
+          <rect x="45" y="50" width="10" height="6" fill="#ffffff"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="brand-title">ScoreNest</div>
+        <div class="brand-sub">Report Generator</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showSection('form-section')">
+        <i class="fas fa-edit"></i> Enter Marks
+      </a>
+      <a href="#" class="nav-item" onclick="showSection('report-section')">
+        <i class="fas fa-file-alt"></i> View Report
+      </a>
+      <a href="#" class="nav-item" onclick="printReport()">
+        <i class="fas fa-print"></i> Print Report
+      </a>
+      <a href="#" class="nav-item" onclick="resetAll()">
+        <i class="fas fa-redo"></i> Reset
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <i class="fas fa-shield-alt"></i> Secure & Private
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-content">
+
+    <header class="top-header">
+      <div>
+        <h1 class="page-title">
+          Student Marks <span>ScoreNest</span>
+        </h1>
+        <p class="page-sub">Generate beautiful report cards instantly</p>
+      </div>
+
+      <div class="header-stats" id="live-stats">
+        <div class="stat-chip">
+          <i class="fas fa-percent"></i>
+          <span id="live-percent">0%</span>
+        </div>
+        <div class="stat-chip grade-chip">
+          <i class="fas fa-star"></i>
+          <span id="live-grade">--</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- FORM -->
+    <section class="section" id="form-section">
+
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-user-graduate"></i> Student Information
+        </div>
+
+        <div class="form-grid">
+          <div class="input-group">
+            <label>Student Name *</label>
+            <input type="text" id="studentName" />
+          </div>
+
+          <div class="input-group">
+            <label>Roll Number *</label>
+            <input type="text" id="rollNo" />
+          </div>
+
+          <div class="input-group">
+            <label>Class / Branch</label>
+            <input type="text" id="classBranch" />
+          </div>
+
+          <div class="input-group">
+            <label>Academic Year</label>
+            <input type="text" id="academicYear" />
+          </div>
+
+          <div class="input-group">
+            <label>School / College</label>
+            <input type="text" id="schoolName" />
+          </div>
+
+          <div class="input-group">
+            <label>Exam Type</label>
+            <select id="examType">
+              <option>Semester Exam</option>
+              <option>Mid-Term Exam</option>
+              <option>Annual Exam</option>
+              <option>Unit Test</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKS -->
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-table"></i> Subject-wise Marks
+          <button class="add-btn" onclick="addSubject()">
+            <i class="fas fa-plus"></i> Add Subject
+          </button>
+        </div>
+
+        <table class="marks-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Subject</th>
+              <th>Max</th>
+              <th>Marks</th>
+              <th>Grade</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="subjectsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-generate" onclick="generateReport()">
+          Generate Report
+        </button>
+      </div>
+
+    </section>
+
+    <!-- REPORT -->
+    <section class="section hidden" id="report-section">
+      <div id="reportOutput"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
